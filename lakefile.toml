@@ -1,0 +1,32 @@
+name = "ExplicitRIP"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["ExplicitRIP", "Challenge", "Solution"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+autoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0"
+
+# Library of the formalization of
+# "Explicit restricted isometries with k = m^{2/3-o(1)}" (Kümmerle–Mixon).
+[[lean_lib]]
+name = "ExplicitRIP"
+globs = ["ExplicitRIP.+"]
+
+# Palomar statement package: Challenge.lean (statements, Mathlib only) and Solution.lean (proofs through the
+# frozen statements), compared by Comparator with comparator.json.
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

@@ -1,0 +1,233 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4, following the Palomar registry conventions (https://palomar-registry.org).
+version: "v0.4"
+
+project:
+  name: "Explicit restricted isometries with k = m^{2/3-o(1)}"
+  description: >-
+    Lean 4 / Mathlib formalization of the paper "Explicit restricted isometries with
+    k = m^{2/3-o(1)}" by Christian Kümmerle and Dustin G. Mixon. Restricted isometry measures
+    how well a matrix preserves the lengths of sparse vectors; deterministic constructions are
+    studied as measurement matrices for sparse recovery in compressed sensing. The principal result
+    (Theorem 1) is an explicit family of real m × n matrices with unit-norm columns such
+    that m → ∞, m/n → 0 and the restricted isometry constant δ_k → 0 for
+    k = m^{2/3-o(1)}, beyond the square-root barrier of coherence arguments; the proof uses
+    no phase cancellation. The matrices are subframes of a real unit-norm two-distance tight
+    frame obtained from the strongly regular graph VO₄⁻(p), p ≡ 3 (mod 4): the columns are
+    indexed by translates of the graph of the field norm of F_{p³}/F_p. The proof combines
+    Gershgorin's circle theorem with a flat restricted isometry estimate, which reduces the
+    problem to the density of subgraphs, and Zahl's bound for sphere tangencies over finite
+    fields, which the development proves from Mathlib. The compared statements also contain
+    the 2/3 barrier for arguments that ignore the signs of the Gram entries (Theorem 4), its
+    analogue for subframes of two-distance tight frames even with phase cancellation
+    (Proposition 10), and the consequence that the matrices of Theorem 1 do not break the 2/3
+    barrier. Every numbered theorem, lemma and proposition of the paper is proved in the development.
+  authors:
+    - "Christian Kümmerle"
+  responsible_maintainers:
+    - "Christian Kümmerle"
+  license: "Apache-2.0"
+
+classification:
+  arxiv: [cs.IT, math.CO]
+  msc2020: [94A12, 42C15, 05E30, 52C10, 15A60]
+
+sources:
+  - title: "Explicit restricted isometries with k = m^{2/3-o(1)}"
+    type: paper
+    relationship: formalizes
+    authors:
+      - "Christian Kümmerle"
+      - "Dustin G. Mixon"
+    id: "arXiv:2611.14475"
+    location: >-
+      Theorems 1, 4 and 6, Lemmas 2, 3, 5 and 7, Propositions 8 and 10, and the unnumbered
+      statements they use; PAPER_MAP.md lists the correspondence.
+    author_endorsement: participated
+    note: >-
+      This source list also records the substantively formalized results of Zahl and of Guth
+      and Zahl.
+  - title: "Sphere tangencies, line incidences, and Lie's line-sphere correspondence"
+    type: paper
+    relationship: formalizes
+    authors:
+      - "Joshua Zahl"
+    id: "arXiv:2002.11677"
+    location: "Theorem 1.8; Mathematical Proceedings of the Cambridge Philosophical Society 172 (2022), no. 2, 401-421"
+    author_endorsement: not-contacted
+    note: >-
+      Theorem 6 of the paper is Zahl's Theorem 1.8 in the case the paper uses (sphere families
+      in F_p^4, p ≡ 3 (mod 4), at most p² spheres). The development proves it from Mathlib
+      (ExplicitRIP.zahl_sphere_contacts) and uses it for Proposition 8; it is not among the
+      compared theorems. As the paper notes, formalizing the proof required a number of local
+      corrections to the published arguments; none of them affects the statement used.
+  - title: "Algebraic curves, rich points, and doubly-ruled surfaces"
+    type: paper
+    relationship: formalizes
+    authors:
+      - "Larry Guth"
+      - "Joshua Zahl"
+    id: "arXiv:1503.02173"
+    location: "Theorem 3.8; American Journal of Mathematics 140 (2018), no. 5, 1187-1229"
+    author_endorsement: not-contacted
+    note: >-
+      Zahl's proof uses this structure theorem for lines. The development proves the case that
+      Zahl's argument needs (lines only, positive characteristic) from Mathlib.
+  - title: "Explicit constructions of RIP matrices and related problems"
+    type: paper
+    relationship: background
+    authors:
+      - "Jean Bourgain"
+      - "Stephen J. Dilworth"
+      - "Kevin Ford"
+      - "Sergei Konyagin"
+      - "Denka Kutzarova"
+    id: "arXiv:1008.4535"
+    location: "Duke Mathematical Journal 159 (2011), no. 1, 145-185"
+    note: >-
+      Source of the flat restricted isometry estimate, which the paper adapts (Lemma 2) and the
+      development proves.
+  - title: "Discrete norms of a matrix and the converse to the expander mixing lemma"
+    type: paper
+    relationship: background
+    authors:
+      - "Vsevolod F. Lev"
+    id: "doi:10.1016/j.laa.2015.05.031"
+    location: "Linear Algebra and its Applications 483 (2015), 158-181"
+    note: "The bound on the discrete Rayleigh norm used by the paper; proved in the development."
+  - title: "Lower bounds on the maximum cross correlation of signals"
+    type: paper
+    relationship: background
+    authors:
+      - "Lloyd R. Welch"
+    id: "doi:10.1109/TIT.1974.1055219"
+    location: "IEEE Transactions on Information Theory 20 (1974), no. 3, 397-399"
+    note: "The Welch bound, quoted in the paper's introduction; proved in the development."
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Every numbered theorem, proposition and lemma of the paper, and every definition and
+    unnumbered statement that they use, has an exact Lean counterpart (a frozen statement in
+    ExplicitRIP/Frozen/, one declaration per file), and every frozen theorem is proved from
+    Mathlib without sorry; PAPER_MAP.md lists the correspondence. This includes Zahl's sphere
+    tangency theorem (Theorem 6), which the paper quotes, together with the part of the
+    Guth-Zahl structure theorem that its proof needs. The Challenge compares Theorem 1,
+    Theorem 4, Proposition 10 and the application of Proposition 10 to the matrices of
+    Theorem 1. Not formalized: the running-time claims for the construction (the matrices are
+    given by explicit definitions, but no complexity bound is proved), the background results
+    of the introduction other than the Welch bound, heuristic remarks, and the open Problem 9.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "KM.main_theorem"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+    - declaration: "KM.unsigned_barrier"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+    - declaration: "KM.construction_barrier"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+    - declaration: "KM.construction_barrier_host"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: agent
+      models: ["Claude Opus 5.5", "GPT-6.1 Sol", "GPT-6 Astra"]
+      framework: "Claude Code (orchestrating agent and subagents) and Codex CLI"
+      tool_setup: >-
+        An orchestrating agent (Claude Opus 5.5 in Claude Code) drafted every frozen statement
+        from the paper and had it audited against the paper by an independent agent. Other
+        agents (Claude subagents, and Codex CLI agents running GPT-6.1 Sol and GPT-6 Astra)
+        wrote the proofs in sandboxed copies of the project and audited them; the integrated
+        development was rebuilt and checked for exact statements and axioms. The statement
+        package was checked with Comparator (Lean 4.35 `lake comparator`), which replayed the
+        exported Solution in NanoDa and in Lean's kernel.
+      cost:
+        wall_time: "about three and a half days of elapsed time (2026-11-07 to 2026-11-10), agents working in parallel"
+        spend_usd: "not tracked"
+        hardware: "local machine (Apple silicon)"
+  spend_usd: "not tracked"
+  notes: >-
+    The paper credits GPT-6 Astra with the initial proof of Theorem 1 and ChatGPT with
+    exploratory discussions and drafting; its two human authors state that they checked the
+    mathematical claims and take responsibility.
+
+fidelity:
+  divergences: >-
+    (1) As in the paper's footnotes 3 and 4, the frame of Theorem 1 is the Cholesky factor of
+    the host Gram matrix in lexicographic vertex order with the zero rows of zero pivots
+    deleted, computed by exact LDLᵀ elimination over ℚ, and F_p^3 is identified with F_{p^3}
+    through the power basis of the lexicographically first monic irreducible cubic.
+    (2) "Explicit" is represented by these concrete definitions; no running-time bound is
+    formalized. (3) Theorem 1 is stated for the parameters of its proof (primes
+    p ≡ 3 (mod 4), T = {0, …, ⌊log p⌋ - 1}, k = ⌊p²/(log p)⁶⌋), with every limit as an
+    explicit ε-P statement; it additionally states k ≤ m^{2/3}. (4) Theorem 4's asymptotic
+    clause assumes the theorem's hypotheses eventually along the sequence. (5) Proposition 10,
+    which the paper states for sequences, is read with "for all sufficiently large m" as
+    eventually in j, uniformly in 1 ≤ k ≤ n_j, "μ ≳ m^{-1/3}" as μ_j ≥ C m_j^{-1/3}
+    eventually for some C > 0, and eventually nonempty selections; two-distance tight frames
+    follow the paper's definition (a ≠ b, unit diagonal, off-diagonal entries in {a, b},
+    ΦΦ* = cI). Lemma 5 keeps the standing assumption of Section 3 that the graph and its
+    complement are connected. (6) The application to Theorem 1 is stated for every real matrix
+    with (p - 1)(p² + 1) rows whose Gram matrix is a principal submatrix of the host Gram
+    matrix; the matrices of Theorem 1 are of this form up to relabeling their rows.
+    (7) Outside the compared statements, Zahl's notions of pencils and complementary conics
+    follow Zahl's paper, whose definitions are more precise than the paper's paraphrase.
+    (8) All asymptotic conclusions concern sufficiently large parameters; small-parameter
+    values use Lean's total conventions for natural floors, log 0, square roots and division by
+    zero. The generic LDLᵀ formulas are asserted to be Cholesky factorizations only for
+    positive semidefinite inputs.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "independent AI audit agents (statement audits of the frozen statements, audits of their proofs)"
+  notes: >-
+    Every frozen statement was audited against the paper by at least one independent agent
+    before it was frozen, and every proof of a frozen statement by an independent proof audit.
+
+alignment:
+  namespace: "KM"
+  statements:
+    - source: "Theorem 1"
+      lean: "KM.main_theorem"
+      module: "Solution"
+      status: "proved"
+      note: "Proved by the frozen statement ExplicitRIP.main_theorem; see fidelity (1)-(3). The matching statement of record is in Challenge."
+    - source: "Theorem 4"
+      lean: "KM.unsigned_barrier"
+      module: "Solution"
+      status: "proved"
+      note: "Proved by ExplicitRIP.unsigned_barrier; see fidelity (4). The matching statement of record is in Challenge."
+    - source: "Proposition 10"
+      lean: "KM.construction_barrier"
+      module: "Solution"
+      status: "proved"
+      note: "Proved by ExplicitRIP.construction_barrier; see fidelity (5). The matching statement of record is in Challenge."
+    - source: "Abstract and Section 5: the matrices of Theorem 1 do not break the 2/3 barrier"
+      lean: "KM.construction_barrier_host"
+      module: "Solution"
+      status: "proved"
+      note: "Proved by ExplicitRIP.construction_barrier_host; see fidelity (6). The matching statement of record is in Challenge."
+
+acknowledgements: >-
+  Lean 4 and Mathlib; Comparator, leanexport and NanoDa for the statement comparison and the
+  independent kernel check.
